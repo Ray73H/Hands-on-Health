@@ -18,7 +18,8 @@ const AddExerciseType = () => {
     const newExercise: Exercise2 = {
       name: exerciseName,
       type: category,
-      sets: [], // Empty sets; these will be added via the modal
+      sets: [],
+      notes: ""
     };
 
     setAvailableExercises([...AvailableExercises, newExercise]);
