@@ -7,7 +7,8 @@ import { Exercise2, Set } from "../../types/types";
 const mockExercise: Exercise2 = {
     name: "Push Ups",
     type: "Strength",
-    sets: [{ reps: 10, weight: 0 }],
+    sets: [{ reps: null, weight: null }],
+    notes: "",
 };
 
 describe("AddSet Component", () => {
@@ -35,7 +36,7 @@ describe("AddSet Component", () => {
 
         // Optionally, you can also check the details of the new set added
         const newSet: Set = updatedExercise.sets[updatedExercise.sets.length - 1];
-        expect(newSet.reps).toBe(10); // Assuming default reps for new set
-        expect(newSet.weight).toBe(20); // Assuming default weight for new set
+        expect(newSet.reps).toBe(null); // Assuming default reps for new set
+        expect(newSet.weight).toBe(null); // Assuming default weight for new set
     });
 });

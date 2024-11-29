@@ -67,3 +67,9 @@ button {
 .history-button button:hover {
     background-color: #0056b3;
 }
+
+.logout-button {
+    position: absolute;
+    top: 93px;
+    right: 10px;
+}

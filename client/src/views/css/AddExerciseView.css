@@ -1,4 +1,4 @@
-.header-container {
+.header-container-addExercise {
   display: flex;
   justify-content: center;
   /* Center the header */
@@ -23,9 +23,9 @@
   right: 20px;
   /* Move it a little from the right */
   padding: 5px 15px;
-  background-color: lightgray;
+  background-color: #007bff;
   /* Set background to grey */
-  color: black;
+  color: white;
   /* Text color */
   font-weight: bold;
   border: none;
@@ -35,8 +35,8 @@
 }
 
 .back-button:hover {
-  background-color: darkgrey;
-  /* Change for hover effect */
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .exercise-box {
@@ -48,21 +48,15 @@
   /* Vertically center items */
   background-color: lightgrey;
   /* Change to your desired shade of grey */
-  padding: 1%;
-  /* Add some padding for spacing */
-  border-radius: 15px;
+  border-radius: 10px;
   /* Optional: rounded corners */
-  margin-bottom: 10px;
   /* Spacing between boxes */
   text-align: center;
   /* Align text to the left */
-  padding-left: 20px;
-  /* Additional left padding */
-  padding-right: 20px;
+  /* Additional left  */
+  padding: 1% 20px;
   /* Additional right padding */
-  margin: 10px 20px;
-  margin-right: 50px;
-  width: 1360px;
+  margin: 10px 50px 10px 20px;
 }
 
 .add-new-exType {
@@ -81,7 +75,6 @@
 .search-container input {
   width: calc(100% - 40px);
   /* Make the input field take the full width minus the gaps */
-  margin: 0 0px;
   /* Add margin to left and right for spacing */
   padding: 10px;
   /* Add some padding for better appearance */
@@ -91,7 +84,7 @@
   /* Optional: Add a border */
   border-radius: 4px;
   /* Optional: Add rounded corners */
-  margin-left: 60px;
+  margin: 0 0px 0 60px;
 }
 
 .search-container input:focus {
@@ -123,7 +116,7 @@
 
 /* Modal box styling */
 .modal-AET {
-  background-color: lightgrey;
+  background-color: #ffffff;
   /* Grey background for the modal */
   border-radius: 10px;
   /* Rounded corners */
@@ -131,10 +124,11 @@
   /* Space inside the modal */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   /* Shadow effect */
-  width: 60%;
+  width: 90%;
   /* Set a width for the modal */
-  height: 40%;
   font-size: 25px;
+  position: relative;
+  max-width: 400px;
 }
 
 /* Input fields styling */
@@ -180,7 +174,7 @@
 
 /* Modal button styling */
 .modal-button-AET {
-  background-color: grey;
+  background-color: #007bff;
   /* Grey background for buttons */
   color: white;
   /* White text */
@@ -197,8 +191,8 @@
 }
 
 .modal-button-AET:hover {
-  background-color: darkgrey;
-  /* Darker grey on hover */
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .search-add-container {
@@ -223,8 +217,8 @@
 }
 
 .new-button:hover {
-  background-color: darkgrey;
-  /* Change for hover effect */
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .input-fields-AddExInfo label {

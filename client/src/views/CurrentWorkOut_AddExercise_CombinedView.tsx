@@ -1,13 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-import { Exercise2 } from "./../types/types";
-import { defaultExercises } from "./../constants/Initial_consts";
+import { Exercise2 } from "../types/types";
 import { EditAddExercise } from "./AddExerciseView";
-import { AppContext, AppProvider } from "./../contexts/AppContext";
+import { AppContext, AppProvider } from "../contexts/AppContext";
 import { CurrentWorkout } from "./CurrentWorkoutView";
 
 function CurrentWorkout_AddExercise_Combined() {
-    const [exercises, setExercises] = React.useState<Exercise2[]>(defaultExercises);
+    const [exercises, setExercises] = React.useState<Exercise2[]>();
     //   const [show, setShow] = React.useState<boolean>(false); // Disabled for testing
 
     const [view, setView] = useState("currentWorkout");

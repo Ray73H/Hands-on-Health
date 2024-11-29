@@ -12,6 +12,7 @@ import Review from "./components/WorkOutPlan/review";
 import CurrentWorkout_AddExercise_Combined from "./views/CurrentWorkOut_AddExercise_CombinedView";
 import HistoryPage from "./components/HistoryPage";
 import DemoPlayer from "./views/DemoPage";
+import HistoryEditing from "./components/History/HistoryEditing";
 import { useAuth } from "./contexts/AuthContext";
 import { useEffect } from "react";
 
@@ -23,7 +24,7 @@ function App() {
         if (storedToken) {
             setToken(storedToken);
         }
-    }, [setToken]);
+    }, []);
 
     return (
         <AppProvider>
@@ -43,7 +44,11 @@ function App() {
 
                         {/* Current Workout */}
                         <Route path="/current-workout" element={<CurrentWorkout_AddExercise_Combined />} />
-                        <Route path="/history" element={<HistoryPage />} />
+                        <Route path="/history" element={<HistoryEditing />} />
+
+
+                        {/* History Editing */}
+                        <Route path="/history-editing" element={<HistoryEditing />} />
                         <Route path="/workout-demo/:exerciseName" element={<DemoPlayer />} />
                     </Routes>
                 </Router>

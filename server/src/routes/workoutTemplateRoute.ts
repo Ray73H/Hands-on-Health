@@ -8,6 +8,7 @@ const router = Router();
 // Create Workout Template
 router.post("/", authenticate, (req: Request, res: Response) => {
 	createWorkoutTemplate(req, res);
-});
+})
+
 
 export default router;

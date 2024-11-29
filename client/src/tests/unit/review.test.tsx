@@ -4,7 +4,6 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { WorkoutProvider } from "../../contexts/WorkoutContext";
 import IntensitySelectionPage from "../../components/WorkOutPlan/IntensitySelectionPage";
 import HomePage from "../../components/HomePage";
-import "@testing-library/jest-dom";
 import { AuthProvider } from "../../contexts/AuthContext";
 
 // Mock the `createWorkoutTemplate` function

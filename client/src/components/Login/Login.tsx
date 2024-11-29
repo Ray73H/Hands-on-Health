@@ -14,13 +14,19 @@ function Login() {
 
     async function handleLogin(event: any) {
         event.preventDefault();
+
+        if (!email || !password) {
+            setError("Please fill all fields");
+            return;
+        }
+
         try {
             const data = await login(email, password);
 
             if (data.result) {
                 setToken(data.token);
                 setUser(email);
-                localStorage.setItem("authToken", data.token);  // Save the token in localStorage
+                localStorage.setItem("authToken", data.token); // Save the token in localStorage
                 setIsGuest(false);
                 navigate("/home");
             } else {
@@ -40,12 +46,12 @@ function Login() {
     return (
         <div className="login">
             <Header />
-            <h1>Login</h1>
+            <h1 data-testid="loginHeader">Login</h1>
             <form onSubmit={handleLogin}>
                 {error && <p style={{ color: "red" }}>{error}</p>}
                 <div className="form-group">
-                    <h2>Username:</h2>
-                    <input type="text" placeholder="Username" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <h2>Email:</h2>
+                    <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <h2>Password:</h2>
@@ -57,11 +63,19 @@ function Login() {
                     />
                 </div>
                 <div className="form-group">
-                    <p onClick={() => navigate("/register")} className="register-button">Register for account</p>
+                    <p onClick={() => navigate("/register")} className="register-button">
+                        Register for account
+                    </p>
                 </div>
-                <div className="form-group submit"><button type="submit">Login</button></div>
+                <div className="form-group submit">
+                    <button type="submit" data-testid="loginButton">
+                        Login
+                    </button>
+                </div>
                 <div className="form-group guest">
-                    <p onClick={handleGuestLogin} className="guest-login">Continue as guest</p>
+                    <p onClick={handleGuestLogin} className="guest-login">
+                        Continue as guest
+                    </p>
                 </div>
             </form>
         </div>

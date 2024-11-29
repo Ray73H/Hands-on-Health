@@ -24,11 +24,20 @@ export async function register(req: Request, res: Response) {
 
         // Create the user and insert into database
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = { email: email, password: hashedPassword, firstName: firstName, lastName: lastName };
+        const user = {
+            email: email,
+            password: hashedPassword,
+            firstName: firstName,
+            lastName: lastName,
+            activeWorkout: false,
+            customExercises: [],
+        };
         const insertResult = await client.db("main").collection("users").insertOne(user);
 
-        // Use the userId to create token
-        const token = jwt.sign({ userId: insertResult.insertedId }, key, { expiresIn: "1 hour" });
+        // Create the token
+        const token = jwt.sign({ userId: insertResult.insertedId, firstName: firstName, lastName: lastName }, key, {
+            expiresIn: "1 hour",
+        });
         res.status(200).json({ message: "Registration successful", token });
     } catch (error) {
         res.status(400).json({ message: "Failed to register", error });
@@ -54,7 +63,10 @@ export async function login(req: Request, res: Response) {
             return res.status(401).json({ message: "Incorrect Password" });
         }
 
-        const token = jwt.sign({ userId: user._id }, key, { expiresIn: "1 hour" });
+        // Create the token
+        const token = jwt.sign({ userId: user._id, firstName: user.firstName, lastName: user.lastName }, key, {
+            expiresIn: "1 hour",
+        });
         res.status(200).json({ message: "Login successful", token });
     } catch (error) {
         res.status(400).json({ message: "Failed to login", error });

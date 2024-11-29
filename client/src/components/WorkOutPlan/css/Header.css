@@ -5,20 +5,43 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
+    padding: 15px 0px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     height: 30px;
 }
 
 .header-title {
+    padding-left: 20px;
     font-size: 24px;
     font-weight: normal;
+    cursor: pointer;
 }
 
 .header-logo img {
-    margin-right: 40px;
+    margin-right: 20px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 50px; /* Adjust based on your logo size */
+    right: 10px;
+    background-color: #007bff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.dropdown-item:hover {
+    background-color: #0056b3;
+    border-radius: 8px;
 }

@@ -1,0 +1,102 @@
+/* General container styling */
+.workout-plan-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #f9fafc;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Plan details section */
+.plan-detail-container {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.plan-detail {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.plan-name-input {
+    max-width: 90%;
+    font-size: 1em;
+    padding: 5px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+}
+
+/* Navigation buttons at the top */
+.top-nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    width: 90%;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
+.top-nav-buttons button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.previous-button {
+    margin-top: 15px;
+    background-color: #007bff;
+}
+
+.previous-button:hover {
+    background-color: #0056b3;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+}
+
+.cancel-button:hover {
+    background-color: #db747e;
+}
+
+
+.top-nav-buttons button:hover {
+    transform: scale(1.05);
+}
+
+/* Edit and Start buttons */
+.edit-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+.edit-buttons button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex: 1; /* Equal button size */
+}
+
+.edit-buttons button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+

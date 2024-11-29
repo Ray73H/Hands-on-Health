@@ -9,7 +9,7 @@ type AddSetProps = {
 const AddSet: React.FC<AddSetProps> = ({ exercise, onAddSet }) => {
     const handleAddSet = () => {
         // Define a new set with default values (customize these as needed)
-        const newSet: Set = { reps: 10, weight: 20 }; // Example values
+        const newSet: Set = { weight: null, reps: null }; // Example values
         const updatedExercise = {
             ...exercise,
             sets: [...exercise.sets, newSet],
@@ -19,7 +19,11 @@ const AddSet: React.FC<AddSetProps> = ({ exercise, onAddSet }) => {
         onAddSet(updatedExercise);
     };
 
-    return <button onClick={handleAddSet} className="control-button">Add Set</button>;
+    return (
+        <button onClick={handleAddSet} className="button--control">
+            Add Set
+        </button>
+    );
 };
 
 export default AddSet;

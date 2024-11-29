@@ -1,205 +1,256 @@
-.current-workout-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  width: 100%;
-  max-width: 80%;
-  box-sizing: border-box;
-}
-
-.header-title {
-  font-size: 2rem;
-  text-align: center;
-  margin: 20px 0;
-}
-
-/* Position the button at the top right of the page */
-.finish-exercise {
-  position: fixed;
-  /* Fixes the button to the viewport */
-  top: 20px;
-  right: 20px;
-  background-color: rgb(182, 213, 249);
-  color: black;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  padding: 8px 12px;
-  cursor: pointer;
-  z-index: 10;
-  /* Ensures it stays above other elements */
-}
-
-.finish-exercise:hover {
-  background-color: rgb(162, 193, 229);
-}
-
-.exercise-list-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  max-width: 800px;
-}
-
-.exercise-card {
-  background-color: rgb(182, 213, 249);
-  border: none;
-  border-radius: 15px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 1420px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.exercise-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.exercise-title {
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-right: 10px;
-}
-
-.exercise-controls {
-  display: flex;
-  gap: 10px;
-}
-
-.control-button {
-  background-color: lightgray;
-  color: black;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.control-button:hover {
-  background-color: darkgray;
-}
-
-.exercise-content {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.set-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
-}
-
-.set-item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background-color: lightgray;
-  border: darkgray;
-  padding: 5px;
-  border-radius: 5px;
-  width: 500px;
-}
-
-.set-item p {
-  margin: 0;
-}
-
-.set-input {
-  width: 50px;
-  padding: 4px;
-  border-radius: 5px;
-  border: 1px solid rgb(150, 150, 150);
-}
-
-.set-delete {
-  font-weight: bold;
-  font-size: 1rem;
-  color: black;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  line-height: 1;
-}
-
-.set-delete:hover {
-  color: slategray;
-  /* Optional hover color for effect */
-}
-
-.notes-section {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+body,
+html {
+  background-color: #f9fafc;
   width: 100%;
   max-width: 100%;
+  overflow: visible;
+}
+
+/* General Page Styling */
+.page--current-workout {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9fafc;
+  min-height: 100vh; /* Ensure the page fills at least the height of the viewport */
+  box-sizing: border-box;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container--header-action {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -40px;
+}
+
+/* Header Title */
+.text--header-title {
+  font-size: 1.9em;
+  font-weight: bold;
+}
+
+/* Navigation Buttons Container */
+.container--navigation-buttons {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between; /* Push Home to the left and Finish to the right */
+  align-items: center; /* Align buttons vertically */
+  padding: 20px 20px; /* Add some padding around the buttons */
+  z-index: 1000; /* Ensure it stays above all other elements */
+}
+
+/* Home Button */
+.button--action-home {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.button--action-home:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Finish Workout Button */
+.button--action-finish {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.button--action-finish:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+
+/* Exercise List Section */
+.container--exercise-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 20px;
+}
+
+/* Exercise Card */
+.card--exercise {
+  background-color: #f0f0f0;
+  border: 2px solid #007bff;
+  border-radius: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+/* Exercise Header */
+.container--exercise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Exercise Name */
+.text--exercise-name {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+/* Dropdown */
+.select--dropdown {
+  background-color: #ffffff; /* White background for readability */
+  border: 1px solid #007bff; /* Match the primary blue color */
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.select--dropdown:focus {
+  outline: none;
+  border-color: #0056b3; /* Darker blue when focused */
+}
+
+/* Controls Section */
+.container--controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.button--control {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.button--control:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.container--exercise-content {
+  display: flex;
+  justify-content: space-between; /* Align set-list and notes side by side */
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
   box-sizing: border-box;
 }
 
-.notes-input {
+/* Set List Section */
+.container--set-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.item--set {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #e9ecef; /* Subtle light gray for individual sets */
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.input--set {
+  width: 50px;
+  padding: 5px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* Delete Set Button */
+.button--set-delete {
+  background-color: #e9ecef;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.button--set-delete:hover {
+  background-color: #b71c1c; /* Darker red on hover */
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Notes Section */
+.container--notes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1; /* Allow it to flexibly grow within the container */
+  max-width: 100%; /* Prevent it from exceeding the container width */
+  margin-right: 25px;
+}
+
+
+.input--notes {
   width: 100%;
   height: 100px;
   padding: 8px;
-  border-radius: 5px;
-  border: 1px solid rgb(150, 150, 150);
+  border: 1px solid #007bff;
+  border-radius: 10px;
   resize: none;
-  box-sizing: border-box;
+  background-color: #ffffff;
 }
 
-.add-exercise-button {
-  /* width: 100%; */
-  width: 1450px;
+
+/* Add Exercise Button */
+.button--add-exercise {
+  width: 100%;
+  max-width: 300px;
   height: 50px;
-  margin-top: 20px;
-  background-color: rgb(182, 213, 249);
-  color: black;
-  font-weight: bold;
-  font-size: large;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  text-align: center;
-  margin-left: 20px;
-}
-
-.add-exercise-button:hover {
-  background-color: rgb(162, 193, 229);
-}
-
-.dropdown-icon {
-  background: none;
-  border: none;
-  font-size: 25px;
-  font-weight: 600;
-  width: fit-content;
-}
-
-.back-to-home {
-  position: fixed;
-  /* Fixes the button to the viewport */
-  top: 20px;
-  left: 20px;
-  background-color: rgb(182, 213, 249);
-  color: black;
-  font-weight: bold;
+  background-color: #007bff;
+  color: white;
   border: none;
   border-radius: 10px;
-  padding: 8px 12px;
-  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 auto 20px;
+  position: sticky;
+  transition: background-color 0.2s, transform 0.2s;
+  bottom: 10px;
   z-index: 10;
+}
+
+.button--add-exercise:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
 }

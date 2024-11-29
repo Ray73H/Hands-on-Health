@@ -1,18 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { fetchCurrentPlan } from "../utils/exercise-utils";
 import Header from "./WorkOutPlan/Header";
 import "./HomePage.css";
 
 const HomePage: React.FC = () => {
     const navigate = useNavigate();
+    const { token, user, isGuest, logout, isLoggedIn } = useAuth();
+    const [hasCurrentWorkout, setHasCurrentWorkout] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            if (token) {
+                const data = await fetchCurrentPlan(token);
+                if (data.notActive) {
+                    setHasCurrentWorkout(false);
+                } else {
+                    setHasCurrentWorkout(true);
+                }
+            } else {
+                setHasCurrentWorkout(false);
+            }
+        };
+
+        if (isLoggedIn) {
+            fetchData();
+        } else {
+            setHasCurrentWorkout(false);
+        }
+    }, [isLoggedIn]);
+
+    function handleCurrentWorkout() {
+        if (hasCurrentWorkout) {
+            navigate("/current-workout");
+        } else {
+            alert("No active workout found!");
+        }
+    }
 
     function handleStartTemplate() {
         navigate("/select-duration");
-    }
-
-    function handleCurrentWorkout() {
-        navigate("/current-workout");
     }
 
     function handleViewHistory() {
@@ -23,7 +51,10 @@ const HomePage: React.FC = () => {
         navigate("/quick-workouts");
     }
 
-    const { user, isGuest } = useAuth();
+    function handleLogout() {
+        logout();
+        navigate("/login");
+    }
 
     return (
         <div className="home-page">
@@ -35,7 +66,7 @@ const HomePage: React.FC = () => {
                     New Plan
                 </button>
 
-                <button className="current-workout-button" onClick={handleCurrentWorkout}>
+                <button className="current-workout-button" onClick={handleCurrentWorkout} disabled={!hasCurrentWorkout}>
                     Current Workout
                 </button>
 
@@ -48,6 +79,9 @@ const HomePage: React.FC = () => {
                     <button onClick={handleViewHistory}>History</button>
                 </div>
             )}
+            <button className="logout-button" onClick={handleLogout}>
+                {isGuest ? "Exit Guest" : "Log Out"}
+            </button>
         </div>
     );
 };

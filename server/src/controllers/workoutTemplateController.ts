@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import client from "../config/db";
+import { ObjectId } from "mongodb";
 
 // JSON from frontend
 // {
@@ -8,6 +9,7 @@ import client from "../config/db";
 //     duration: "30",
 //     intensity: "normal"
 // }
+
 
 // Create workout template by getting from database and generating the workout
 export async function createWorkoutTemplate(req: Request, res: Response) {
@@ -30,7 +32,7 @@ export async function createWorkoutTemplate(req: Request, res: Response) {
             .find({ type: { $in: exerciseTypes } })
             .toArray();
 
-        // Generate the workout
+        // Generate the workout (Helper Function)
         const workoutPlan = generateWorkout(exercises, exerciseTypes.length, duration, intensity);
 
         // Put the new plan into the database
@@ -46,12 +48,19 @@ export async function createWorkoutTemplate(req: Request, res: Response) {
         };
         await client.db("main").collection("plans").insertOne(newDocument);
 
+        // Set active workout for user to true
+        await client
+            .db("main")
+            .collection("users")
+            .updateOne({ _id: new ObjectId(userId) }, { $set: { activeWorkout: true } });
+
         res.status(200).json(workoutPlan);
     } catch (error) {
         res.status(500).json({ message: "Error fetching exercises", error });
     }
 }
 
+// Helper Function
 function generateWorkout(exercises: any[], numberOfTypes: number, duration: number, intensity: string) {
     // Determine the number of sets based on intensity
     let setsPerExercise;
@@ -65,7 +74,7 @@ function generateWorkout(exercises: any[], numberOfTypes: number, duration: numb
         case "High":
             setsPerExercise = 4;
             break;
-        case "Extreme":
+        case "EXTREME":
             setsPerExercise = 5;
             break;
         default:
@@ -154,8 +163,13 @@ function generateWorkout(exercises: any[], numberOfTypes: number, duration: numb
 
             // For the selected exercise, set the number of sets based on intensity
             if (selectedExercise) {
-                selectedExercise.sets = setsPerExercise;
+                selectedExercise.sets = Array.from({ length: setsPerExercise }, () => ({
+                    weight: null,
+                    reps: null,
+                }));
+                selectedExercise.notes = "";
                 delete selectedExercise.priority; // Remove the priority field
+                delete selectedExercise._id;
                 workoutPlan.push(selectedExercise);
             }
         }

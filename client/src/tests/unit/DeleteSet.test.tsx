@@ -11,6 +11,7 @@ const mockExercise: Exercise2 = {
         { reps: 10, weight: 0 },
         { reps: 12, weight: 0 },
     ],
+    notes: "",
 };
 
 describe("DeleteSet Component", () => {
@@ -22,7 +23,7 @@ describe("DeleteSet Component", () => {
         render(<DeleteSet exercise={mockExercise} setIndex={0} onUpdateExercise={mockOnUpdateExercise} />);
 
         // Find and click the "x" button
-        const deleteButton = screen.getByText("x");
+        const deleteButton = screen.getByText("X");
         fireEvent.click(deleteButton);
 
         // Check if onUpdateExercise was called once
