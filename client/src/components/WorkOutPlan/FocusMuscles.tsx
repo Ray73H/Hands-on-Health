@@ -81,7 +81,7 @@ const FocusMusclesView: React.FC = () => {
     }
 
     const isAnyGroupSelected = muscleGroups.some((group) => group.selected);
-
+    const selectedDuration = duration ? `${duration} minutes` : "No duration selected";
     return (
         <div className="focus-muscles-view">
             <Header />
@@ -93,6 +93,7 @@ const FocusMusclesView: React.FC = () => {
                     </button>
                 </div>
                 <h2 className="focus">Focus</h2>
+                <p>Selected Duration: {selectedDuration}</p>
                 <div className="muscle-group-container">
                     {muscleGroups.map((group) => (
                         <button

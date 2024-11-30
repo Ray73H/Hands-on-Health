@@ -5,7 +5,7 @@ import Header from "./Header";
 import "./css/WorkoutTemplateOptions.css";
 
 const IntensitySelectionPage: React.FC = () => {
-    const { intensity, setIntensity, cancel } = useWorkout();
+    const { intensity, setIntensity, duration, focus, cancel } = useWorkout();
     const navigate = useNavigate();
 
     const isIntensitySelected = intensity !== "";
@@ -29,6 +29,9 @@ const IntensitySelectionPage: React.FC = () => {
         navigate("/");
     }
 
+    const selectedDuration = duration ? `${duration} minutes` : "No duration selected";
+    const selectedFocus = focus?.length ? focus.join(", ") : "No muscles selected";
+
     return (
         <div className="intensity-page-view">
             <Header />
@@ -40,6 +43,8 @@ const IntensitySelectionPage: React.FC = () => {
                     </button>
                 </div>
                 <h2 className="intensity">Intensity</h2>
+                <p>Selected Duration: {selectedDuration}</p>
+                <p>Selected Focus Muscles: {selectedFocus}</p>
                 <div className="intensity-group-container">
                     {["Low", "Normal", "High", "EXTREME"].map((inten) => (
                         <button
