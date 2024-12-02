@@ -16,11 +16,10 @@ export async function register(email: String, password: String, firstName: Strin
         if (!response.ok) {
             return { result: false, message: jsonResponse.message };
         }
-        console.log("Signup successful:", jsonResponse);
+
         return { result: true, token: jsonResponse.token };
     } catch (error) {
-        console.error("Error in register", error);
-        throw error;
+        console.error("Error in register");
     }
 }
 
@@ -38,10 +37,9 @@ export async function login(email: String, password: String) {
         if (!response.ok) {
             return { result: false, message: jsonResponse.message };
         }
-        console.log("Login successful:", jsonResponse);
+
         return { result: true, token: jsonResponse.token, firstName: jsonResponse.firstName };
     } catch (error) {
-        console.error("Error in login", error);
-        throw error;
+        console.error("Error in login");
     }
 }

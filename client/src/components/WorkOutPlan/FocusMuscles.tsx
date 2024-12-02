@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FocusMuscles } from "../../types/types";
 import { useNavigate } from "react-router-dom";
 import "./css/WorkoutTemplateOptions.css";
@@ -16,9 +16,43 @@ const initialFocusMuscles: FocusMuscles[] = [
 
 const FocusMusclesView: React.FC = () => {
     // Now accepts duration as a prop
-    const { duration, setFocus } = useWorkout();
-    const [muscleGroups, setMuscleGroups] = useState<FocusMuscles[]>(initialFocusMuscles);
+    const { duration, setFocus, cancel } = useWorkout();
     const navigate = useNavigate();
+
+    const [muscleGroups, setMuscleGroups] = useState<FocusMuscles[]>(() => {
+        const savedMuscles = sessionStorage.getItem("selectedMuscles");
+        return savedMuscles ? JSON.parse(savedMuscles) : [...initialFocusMuscles];
+    });
+
+    useEffect(() => {
+        sessionStorage.setItem("selectedMuscles", JSON.stringify(muscleGroups));
+    }, [muscleGroups]);
+
+    useEffect(() => {
+        window.addEventListener("beforeunload", () => {
+            sessionStorage.removeItem("selectedMuscles");
+        });
+
+        return () => {
+            window.removeEventListener("beforeunload", () => {
+                sessionStorage.removeItem("selectedMuscles");
+            });
+        };
+    }, []);
+
+    // Redirect to home page on reload
+    useEffect(() => {
+        const isReloaded = sessionStorage.getItem("reloadFocus");
+        if (isReloaded) {
+            navigate("/");
+        } else {
+            sessionStorage.setItem("reloadFocus", "true");
+        }
+
+        return () => {
+            sessionStorage.removeItem("reloadFocus");
+        };
+    }, [navigate]);
 
     const toggleMuscleGroup = (id: number) => {
         const updatedMuscleGroups = muscleGroups.map((group) => ({
@@ -42,10 +76,11 @@ const FocusMusclesView: React.FC = () => {
     };
 
     function handleCancelButton() {
+        cancel();
         navigate("/");
     }
 
-    const isAnyGroupSelected = muscleGroups.some(group => group.selected);
+    const isAnyGroupSelected = muscleGroups.some((group) => group.selected);
 
     return (
         <div className="focus-muscles-view">
@@ -58,6 +93,7 @@ const FocusMusclesView: React.FC = () => {
                     </button>
                 </div>
                 <h2 className="focus">Focus</h2>
+                <p className="description">(Select one or multiple)</p>
                 <div className="muscle-group-container">
                     {muscleGroups.map((group) => (
                         <button
@@ -76,7 +112,7 @@ const FocusMusclesView: React.FC = () => {
                     <button
                         className="next-button"
                         onClick={() => navigate("/select-intensity")}
-                        disabled={!isAnyGroupSelected}  // Disable the button if no groups are selected
+                        disabled={!isAnyGroupSelected} // Disable the button if no groups are selected
                     >
                         Next
                     </button>

@@ -83,7 +83,7 @@ function generateWorkout(exercises: any[], numberOfTypes: number, duration: numb
 
     // Determine the number of total exercises based on duration
     // 10 min = 1 exercise
-    let totalExercisesNeeded = Math.round(duration / 10);
+    let totalExercisesNeeded = duration / 10;
 
     // Determine the number of exercises per type
     let exercisesPerType: number[] = [];
@@ -149,7 +149,7 @@ function generateWorkout(exercises: any[], numberOfTypes: number, duration: numb
         for (let i = 0; i < countNeeded; i++) {
             let selectedExercise;
 
-            if (i < 3) {
+            if (i < 5) {
                 // Choose from priority 1 first
                 const randomIndex = Math.floor(Math.random() * priority1Exercises.length);
                 selectedExercise = priority1Exercises[randomIndex];

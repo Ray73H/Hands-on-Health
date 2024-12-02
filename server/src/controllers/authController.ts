@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { Request, Response, NextFunction, RequestHandler } from "express";
 import client from "../config/db";
 import dotenv from "dotenv";
+import { ObjectId } from "mongodb";
 
 dotenv.config();
 var key = process.env.SECRET_KEY as string;
@@ -36,7 +37,7 @@ export async function register(req: Request, res: Response) {
 
         // Create the token
         const token = jwt.sign({ userId: insertResult.insertedId, firstName: firstName, lastName: lastName }, key, {
-            expiresIn: "1 hour",
+            expiresIn: "6hr",
         });
         res.status(200).json({ message: "Registration successful", token });
     } catch (error) {
@@ -65,7 +66,7 @@ export async function login(req: Request, res: Response) {
 
         // Create the token
         const token = jwt.sign({ userId: user._id, firstName: user.firstName, lastName: user.lastName }, key, {
-            expiresIn: "1 hour",
+            expiresIn: "6hr",
         });
         res.status(200).json({ message: "Login successful", token, firstName: user.firstName });
     } catch (error) {

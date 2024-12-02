@@ -4,11 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../../utils/auth-utils";
 import Header from "../WorkOutPlan/Header";
 import "./css/Login.css";
+import showImg from "../../logos/eye.png";
+import hideImg from "../../logos/hidden.png";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const { setToken, setIsGuest, setUser, setFirstName } = useAuth();
     const navigate = useNavigate();
 
@@ -23,7 +26,10 @@ function Login() {
         try {
             const data = await login(email, password);
 
-            if (data.result) {
+            if (!data) {
+                setError("Login failed. Please try again.");
+            }
+            else if (data.result) {
                 setToken(data.token);
                 setUser(email);
                 setFirstName(data.firstName);
@@ -58,12 +64,18 @@ function Login() {
                 </div>
                 <div className="form-group">
                     <h2>Password:</h2>
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                    <div className="password-input-wrapper">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            className="password-input"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <span className="icon" onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <img src={hideImg} alt="hide" /> : <img src={showImg} alt="show" />}
+                        </span>
+                    </div>
                 </div>
                 <div className="form-group">
                     <p onClick={() => navigate("/register")} className="register-button">

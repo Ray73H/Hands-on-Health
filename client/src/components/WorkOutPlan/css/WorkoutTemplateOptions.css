@@ -9,14 +9,14 @@ html {
 .focus-muscles-view,
 .duration-page-view,
 .intensity-page-view {
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
     text-align: center;
     padding: 0px;
     background-color: #f9fafc;
 }
 
 .subtitle {
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
     font-size: 30px;
     margin-top: 15px;
     margin-bottom: 0px;
@@ -50,6 +50,14 @@ html {
 .duration,
 .intensity {
     font-size: 35px;
+}
+
+.focus {
+    margin-bottom: 5px;
+}
+
+.description {
+    margin-bottom: 30px;
 }
 
 .muscle-group-button,

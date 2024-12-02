@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Exercise2 } from "../types/types";
 import { EditAddExercise } from "./AddExerciseView";
@@ -10,6 +10,11 @@ function CurrentWorkout_AddExercise_Combined() {
     //   const [show, setShow] = React.useState<boolean>(false); // Disabled for testing
 
     const [view, setView] = useState("currentWorkout");
+
+    // Scroll to the top whenever the view changes
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [view]);
 
     const showAddExerciseView = () => setView("addExercise");
     const showCurrentWorkoutView = () => setView("currentWorkout");

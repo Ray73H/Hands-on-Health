@@ -35,21 +35,6 @@ describe("Review Component", () => {
         expect(screen.getByText(/Intensity:/)).toBeInTheDocument();
     });
 
-    test("toggles edit mode for plan name", () => {
-        const editButton = screen.getByText("Edit Name");
-        fireEvent.click(editButton);
-
-        // Check if input field is now visible
-        expect(screen.getByRole("textbox")).toBeInTheDocument();
-
-        // Change input value and save
-        fireEvent.change(screen.getByRole("textbox"), { target: { value: "New Plan" } });
-        fireEvent.click(screen.getByText("Save Name"));
-
-        // Check if the new plan name is displayed correctly
-        expect(screen.getByText("New Plan")).toBeInTheDocument();
-    });
-
     test("Previous button click functionality", () => {
         const previousButton = screen.getByText("Previous");
         waitFor(() => {

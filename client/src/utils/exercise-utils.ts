@@ -29,15 +29,14 @@ export async function createWorkoutTemplate(
         }
 
         if (!response.ok) {
-            throw new Error("Failed to fetch workout template");
+            throw new Error;
         }
 
         // Wait for the response to be parsed as JSON
         const jsonResponse = await response.json();
         return jsonResponse;
     } catch (error) {
-        console.error("Error in createWorkoutTemplate", error);
-        throw error;
+        console.error("Error in createWorkoutTemplate");
     }
 }
 
@@ -57,15 +56,14 @@ export async function fetchCurrentPlan(token: string | null) {
         }
 
         if (!response.ok) {
-            throw new Error("Failed to fetch current plan");
+            throw new Error;
         }
 
         const jsonResponse = await response.json();
         console.log("Data from fetchCurrentPlan", jsonResponse);
         return jsonResponse;
     } catch (error) {
-        console.error("Error in fetchCurrentPlan", error);
-        throw error;
+        console.error("Error in fetchCurrentPlan");
     }
 }
 
@@ -88,13 +86,12 @@ export async function saveCurrentPlan(token: string | null, workoutPlan: Exercis
         }
 
         if (!response.ok) {
-            throw new Error("Failed to save current plan");
+            throw new Error;
         }
 
         return { logout: false };
     } catch (error) {
-        console.error("Error in saveCurrentPlan", error);
-        throw error;
+        console.error("Error in saveCurrentPlan");
     }
 }
 
@@ -110,7 +107,7 @@ export async function fetchAllPlans(token: string | null) {
         }
 
         if (!response.ok) {
-            throw new Error("Failed to fetch current plan");
+            throw new Error;
         }
 
         if (response.status == 204) {
@@ -120,8 +117,7 @@ export async function fetchAllPlans(token: string | null) {
         const jsonResponse = await response.json();
         return jsonResponse;
     } catch (error) {
-        console.error("Error in fetchAllPlans", error);
-        throw error;
+        console.error("Error in fetchAllPlans");
     }
 }
 
@@ -161,13 +157,12 @@ export async function finishCurrentWorkout(token: string | null) {
         }
 
         if (!response.ok) {
-            throw new Error("Failed to finish workout");
+            throw new Error;
         }
 
         return { logout: false };
     } catch (error) {
-        console.log("Error in finishCurrentWorkout", error);
-        throw error;
+        console.log("Error in finishCurrentWorkout");
     }
 }
 
@@ -183,8 +178,7 @@ export async function getDefaultExercises() {
         const jsonResponse = await response.json();
         return jsonResponse;
     } catch (error) {
-        console.log("Error in getDefaultExercises", error);
-        throw error;
+        console.log("Error in getDefaultExercises");
     }
 }
 
@@ -203,7 +197,7 @@ export async function getCustomExercises(token: string | null) {
         }
 
         if (!response.ok) {
-            throw new Error("Failed to get custom exercises");
+            throw new Error;
         }
 
         if (response.status == 204) {
@@ -213,8 +207,7 @@ export async function getCustomExercises(token: string | null) {
         const jsonResponse = await response.json();
         return jsonResponse;
     } catch (error) {
-        console.log("Error in getCustomeExercises", error);
-        throw error;
+        console.log("Error in getCustomeExercises");
     }
 }
 
@@ -237,12 +230,11 @@ export async function setCustomExercise(token: string | null, customExercise: Ex
         }
 
         if (!response.ok) {
-            throw new Error("Failed to set custom exercise");
+            throw new Error;
         }
 
         return { logout: false };
     } catch (error) {
-        console.log("Error in setCustomExercise", error);
-        throw error;
+        console.log("Error in setCustomExercise");
     }
 }

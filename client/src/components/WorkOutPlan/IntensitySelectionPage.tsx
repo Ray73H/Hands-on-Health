@@ -1,22 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWorkout } from "../../contexts/WorkoutContext";
 import Header from "./Header";
 import "./css/WorkoutTemplateOptions.css";
 
 const IntensitySelectionPage: React.FC = () => {
-    const { setIntensity } = useWorkout();
-    const [selectedIntensity, setSelectedIntensity] = useState<string | null>(null);
+    const { intensity, setIntensity, cancel } = useWorkout();
     const navigate = useNavigate();
 
-    const handleSelectIntensity = (intensity: string) => {
-        setSelectedIntensity(intensity);
-        setIntensity(intensity);
-    };
+    const isIntensitySelected = intensity !== "";
 
-    const isIntensitySelected = selectedIntensity !== null;
+    // Redirect to home page on reload
+    useEffect(() => {
+        const isReloaded = sessionStorage.getItem("reloadIntensity");
+        if (isReloaded) {
+            navigate("/");
+        } else {
+            sessionStorage.setItem("reloadIntensity", "true");
+        }
+
+        return () => {
+            sessionStorage.removeItem("reloadIntensity");
+        };
+    }, [navigate]);
 
     function handleCancelButton() {
+        cancel();
         navigate("/");
     }
 
@@ -32,13 +41,13 @@ const IntensitySelectionPage: React.FC = () => {
                 </div>
                 <h2 className="intensity">Intensity</h2>
                 <div className="intensity-group-container">
-                    {["Low", "Normal", "High", "EXTREME"].map((intensity) => (
+                    {["Low", "Normal", "High", "EXTREME"].map((inten) => (
                         <button
-                            key={intensity}
-                            className={`intensity-button ${selectedIntensity === intensity ? "selected" : ""}`}
-                            onClick={() => handleSelectIntensity(intensity)}
+                            key={inten}
+                            className={`intensity-button ${intensity === inten ? "selected" : ""}`}
+                            onClick={() => setIntensity(inten)}
                         >
-                            {intensity}
+                            {inten}
                         </button>
                     ))}
                 </div>

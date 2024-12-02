@@ -46,7 +46,6 @@ function App() {
                         <Route path="/current-workout" element={<CurrentWorkout_AddExercise_Combined />} />
                         <Route path="/history" element={<HistoryEditing />} />
 
-
                         {/* History Editing */}
                         <Route path="/history-editing" element={<HistoryEditing />} />
                         <Route path="/workout-demo/:exerciseName" element={<DemoPlayer />} />
@@ -56,15 +55,5 @@ function App() {
         </AppProvider>
     );
 }
-
-// function App() {
-//     return (
-//         <div className="App">
-//             <main>
-//                 <CurrentWorkout_AddExercise_Combined/>
-//             </main>
-//         </div>
-//     );
-// }
 
 export default App;

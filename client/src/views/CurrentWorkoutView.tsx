@@ -96,12 +96,12 @@ export const CurrentWorkout: React.FC<CurrentWorkoutProps> = ({ onAddExercise })
             try {
                 const data = await fetchCurrentPlan(token);
 
-                if (data.logout) {
+                if (data && data.logout) {
                     logout();
                     navigate("/login");
                 }
 
-                if (data.notActive) {
+                if (data && data.notActive) {
                     navigate("/home");
                 }
 
@@ -131,7 +131,7 @@ export const CurrentWorkout: React.FC<CurrentWorkoutProps> = ({ onAddExercise })
     // Send the current workout plan information to backend when currentWorkoutExercises updates or on unmount
     const handleDataSave = async () => {
         const data = await saveCurrentPlan(token, currentWorkoutExercisesRef.current);
-        if (data.logout) {
+        if (data && data.logout) {
             logout();
             navigate("/login");
         }
@@ -193,7 +193,7 @@ export const CurrentWorkout: React.FC<CurrentWorkoutProps> = ({ onAddExercise })
     // Finish Workout
     async function handleFinishWorkout() {
         const data = await finishCurrentWorkout(token);
-        if (data.logout) {
+        if (data && data.logout) {
             logout();
             navigate("/login");
         }

@@ -8,16 +8,57 @@ html {
 }
 
 .register {
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
     text-align: center;
     padding: 0px;
     background-color: #f9fafc;
 }
 
-.back-to-login-button {
-    position: absolute;
-    top: 100px;
-    left: 450px;
+.names-group {
+    width: 40%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.names {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group {
+    width: 40%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group.submit,
+.form-group.guest {
+    align-items: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login-button {
+    display: block;
+    width: 100%;
+    background: none;
+    color: #555;
+    padding: 15px 0px;
+    cursor: pointer;
+    border: none;
+    margin-top: 0px;
+    text-align: left;
+}
+
+.login-button:hover {
+    color: #000;
+    text-decoration: underline;
 }
 
 .register h1 {
@@ -51,4 +92,19 @@ html {
     border: 2px solid #ccc;
     border-radius: 10px;
     box-sizing: border-box;
+}
+
+.password-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.icon {
+    position: absolute;
+    right: 20px;
+    top: 53%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
 }

@@ -33,7 +33,7 @@ const AddExerciseType = () => {
         };
 
         const data = await setCustomExercise(token, newExercise);
-        if (data.logout) {
+        if (data && data.logout) {
             logout();
             navigate("/login");
         }

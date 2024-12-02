@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
         const fetchData = async () => {
             if (token) {
                 const data = await fetchCurrentPlan(token);
-                if (data.notActive) {
+                if (data && data.notActive) {
                     setHasCurrentWorkout(false);
                 } else {
                     setHasCurrentWorkout(true);

@@ -69,7 +69,6 @@
     background-color: #db747e;
 }
 
-
 .top-nav-buttons button:hover {
     transform: scale(1.05);
 }
@@ -78,7 +77,7 @@
 .edit-buttons {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 50%;
     gap: 10px;
 }
 
@@ -99,4 +98,3 @@
     background-color: #0056b3;
     transform: scale(1.05);
 }
-

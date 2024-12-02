@@ -1,24 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWorkout } from "../../contexts/WorkoutContext";
 import Header from "./Header";
 import "./css/WorkoutTemplateOptions.css";
 
 const DurationSelectionPage: React.FC = () => {
-    const { setDuration } = useWorkout();
-    const [selectedDuration, setSelectedDuration] = useState<number | null>(null);
+    const { duration, setDuration, cancel } = useWorkout();
     const navigate = useNavigate();
 
-    const handleSelectDuration = (duration: number) => {
-        setSelectedDuration(duration);
-        setDuration(duration);
-    };
+    // Redirect to home page on reload
+    useEffect(() => {
+        const isReloaded = sessionStorage.getItem("reloadDuration");
+        if (isReloaded) {
+            navigate("/");
+        } else {
+            sessionStorage.setItem("reloadDuration", "true");
+        }
+
+        return () => {
+            sessionStorage.removeItem("reloadDuration");
+        };
+    }, [navigate]);
 
     function handleCancelButton() {
+        cancel();
         navigate("/");
     }
 
-    const isDurationSelected = selectedDuration !== null;
+    const isDurationSelected = duration !== 0;
 
     return (
         <div className="duration-page-view">
@@ -32,20 +41,17 @@ const DurationSelectionPage: React.FC = () => {
                 </div>
                 <h2 className="duration">Duration</h2>
                 <div className="duration-group-container">
-                    {[30, 60, 90, 120].map((duration) => (
+                    {[30, 60, 90, 120].map((value) => (
                         <button
-                            key={duration}
-                            className={`duration-button ${selectedDuration === duration ? "selected" : ""}`}
-                            onClick={() => handleSelectDuration(duration)}
+                            key={value}
+                            className={`duration-button ${duration === value ? "selected" : ""}`}
+                            onClick={() => setDuration(value)}
                         >
-                            {duration} min
+                            {value} min
                         </button>
                     ))}
                 </div>
                 <div className="navigation-buttons">
-                    <button className="prev-button" onClick={handleCancelButton}>
-                        Prev
-                    </button>
                     <button
                         className="next-button"
                         onClick={() => navigate("/select-focus")}

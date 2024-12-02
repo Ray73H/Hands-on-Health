@@ -44,10 +44,11 @@ describe("Signup Component", () => {
     test("Should correctly show page when rendered", () => {
         expect(screen.getByText(/sign up/i)).toBeInTheDocument();
         expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument();
-        expect(screen.getByPlaceholderText(/password/i)).toBeInTheDocument();
+        expect(screen.getByPlaceholderText("Password")).toBeInTheDocument();
+        expect(screen.getByPlaceholderText("Confirm Password")).toBeInTheDocument();
         expect(screen.getByPlaceholderText(/first name/i)).toBeInTheDocument();
         expect(screen.getByPlaceholderText(/last name/i)).toBeInTheDocument();
-        expect(screen.getByText(/back to login/i)).toBeInTheDocument();
+        expect(screen.getByText(/login to account/i)).toBeInTheDocument();
         expect(screen.getByText(/create account/i)).toBeInTheDocument();
     });
 
@@ -55,7 +56,8 @@ describe("Signup Component", () => {
         (register as jest.Mock).mockResolvedValueOnce({ result: false, message: "Email is already registered" });
 
         fireEvent.change(screen.getByPlaceholderText(/email/i), { target: { value: "testUser" } });
-        fireEvent.change(screen.getByPlaceholderText(/password/i), { target: { value: "testPass" } });
+        fireEvent.change(screen.getByPlaceholderText("Password"), { target: { value: "testPass" } });
+        fireEvent.change(screen.getByPlaceholderText("Confirm Password"), { target: { value: "testPass" } });
         fireEvent.change(screen.getByPlaceholderText(/first name/i), { target: { value: "test" } });
         fireEvent.change(screen.getByPlaceholderText(/last name/i), { target: { value: "user" } });
         fireEvent.click(screen.getByText(/create account/i));
@@ -73,7 +75,8 @@ describe("Signup Component", () => {
         (register as jest.Mock).mockRejectedValueOnce(new Error("Server error"));
 
         fireEvent.change(screen.getByPlaceholderText(/email/i), { target: { value: "testUser" } });
-        fireEvent.change(screen.getByPlaceholderText(/password/i), { target: { value: "testPass" } });
+        fireEvent.change(screen.getByPlaceholderText("Password"), { target: { value: "testPass" } });
+        fireEvent.change(screen.getByPlaceholderText("Confirm Password"), { target: { value: "testPass" } });
         fireEvent.change(screen.getByPlaceholderText(/first name/i), { target: { value: "test" } });
         fireEvent.change(screen.getByPlaceholderText(/last name/i), { target: { value: "user" } });
         fireEvent.click(screen.getByText(/create account/i));
@@ -85,7 +88,8 @@ describe("Signup Component", () => {
         (register as jest.Mock).mockResolvedValueOnce({ result: true, token: "mockToken" });
 
         fireEvent.change(screen.getByPlaceholderText(/email/i), { target: { value: "testUser" } });
-        fireEvent.change(screen.getByPlaceholderText(/password/i), { target: { value: "testPass" } });
+        fireEvent.change(screen.getByPlaceholderText("Password"), { target: { value: "testPass" } });
+        fireEvent.change(screen.getByPlaceholderText("Confirm Password"), { target: { value: "testPass" } });
         fireEvent.change(screen.getByPlaceholderText(/first name/i), { target: { value: "test" } });
         fireEvent.change(screen.getByPlaceholderText(/last name/i), { target: { value: "user" } });
         fireEvent.click(screen.getByText(/create account/i));
@@ -96,7 +100,7 @@ describe("Signup Component", () => {
     });
 
     test("Should navigate to login page when button is clicked", async () => {
-        fireEvent.click(screen.getByText(/back to login/i));
+        fireEvent.click(screen.getByText(/login to account/i));
 
         await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/login"));
     });

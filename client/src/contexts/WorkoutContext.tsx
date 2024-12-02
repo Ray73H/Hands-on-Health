@@ -7,6 +7,7 @@ type WorkoutContextType = {
     setDuration: (value: number) => void;
     setFocus: (value: string[]) => void;
     setIntensity: (value: string) => void;
+    cancel: () => void;
 };
 
 const WorkoutContext = createContext<WorkoutContextType | undefined>(undefined);
@@ -16,8 +17,14 @@ export const WorkoutProvider = ({ children }: { children: ReactNode }) => {
     const [focus, setFocus] = useState<string[]>([]);
     const [intensity, setIntensity] = useState<string>("");
 
+    function cancel(){
+        setDuration(0);
+        setFocus([]);
+        setIntensity("");
+    }
+
     return (
-        <WorkoutContext.Provider value={{ duration, focus, intensity, setDuration, setFocus, setIntensity }}>
+        <WorkoutContext.Provider value={{ duration, focus, intensity, setDuration, setFocus, setIntensity, cancel }}>
             {children}
         </WorkoutContext.Provider>
     );

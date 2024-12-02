@@ -26,7 +26,7 @@ const HistoryEditing: React.FC = () => {
     useEffect(() => {
         async function getPlans() {
             const workoutPlans = await fetchAllPlans(token);
-            if (workoutPlans.logout) {
+            if (workoutPlans && workoutPlans.logout) {
                 logout();
                 navigate("/login");
             }
