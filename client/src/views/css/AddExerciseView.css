@@ -23,7 +23,7 @@
   right: 20px;
   /* Move it a little from the right */
   padding: 5px 15px;
-  background-color: #007bff;
+  background-color: #dc3545;
   /* Set background to grey */
   color: white;
   /* Text color */
@@ -35,7 +35,7 @@
 }
 
 .back-button:hover {
-  background-color: #0056b3;
+  background-color: #c0392b;
   transform: scale(1.05);
 }
 

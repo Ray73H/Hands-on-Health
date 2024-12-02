@@ -4,7 +4,7 @@ import Header from "../WorkOutPlan/Header";
 import "../WorkOutPlan/css/WorkoutTemplateOptions.css";
 import "./HistoryEditing.css";
 import { useAuth } from "../../contexts/AuthContext";
-import { deletePlan, fetchAllPlans } from "../../utils/exercise-utils";
+import { deletePlan, fetchAllPlans, saveCurrentPlan } from "../../utils/exercise-utils";
 import { Exercise2 } from "../../types/types";
 
 interface WorkoutPlan {
@@ -52,8 +52,29 @@ const HistoryEditing: React.FC = () => {
         }
     };
 
-    const handleStartWorkout = async (planId: string) => {
-        
+    const handleBeginWorkout = async (planId: string) => {
+        console.log("Begin workout for plan ID:", planId);
+        const plan = workoutHistory.find((p) => p._id === planId);
+
+        if (!plan) {
+            console.error("Workout plan not found for ID:", planId);
+            alert("No workout plan found.");
+            return;
+        }
+        if (!plan.workoutPlan || plan.workoutPlan.length === 0) {
+            console.error("Workout plan has no exercises.");
+            alert("No exercises found in the workout plan.");
+            return;
+        }
+        console.log("Starting workout with plan:", plan);
+        if (plan) {
+            try {
+                await saveCurrentPlan(token, plan.workoutPlan);
+                navigate("/current-workout");
+            } catch (error) {
+                console.error("Failed to set the current workout plan:", error);
+            }
+        }
     }
 
     return (
@@ -83,8 +104,8 @@ const HistoryEditing: React.FC = () => {
                                 </button>
                             )}
                             {!isEditing && (
-                                <button className="start-workout-button">
-                                    Start Workout
+                                <button className="start-workout-button" onClick={() => handleBeginWorkout(plan._id)}>
+                                    Begin Workout
                                 </button>
                             )}
                         </div>

@@ -62,7 +62,7 @@ html {
 
 /* Finish Workout Button */
 .button--action-finish {
-  background-color: #007bff;
+  background-color: #dc3545;
   color: white;
   border: none;
   border-radius: 10px;
@@ -74,7 +74,7 @@ html {
 }
 
 .button--action-finish:hover {
-  background-color: #0056b3;
+  background-color: #c0392b;
   transform: scale(1.05);
 }
 
