@@ -164,3 +164,37 @@ demo_urls.set("Crunch", {
   primary: "https://www.youtube.com/embed/2z8JmcrW-As",
   backup: "https://www.youtube.com/embed/Xyd_fa5zoEU",
 });
+demo_urls.set("Bicycle Crunches", {
+  primary: "https://www.youtube.com/embed/9FGilxCbdz8",
+  backup: "https://www.youtube.com/embed/Xyd_fa5zoEU"
+});
+
+demo_urls.set("Cable Woodchopper", {
+  primary: "https://www.youtube.com/embed/rtPOTM0eUnY",
+  backup: "https://www.youtube.com/embed/pAcmvYxj_Cg"
+});
+
+demo_urls.set("Chin-Up", {
+  primary: "https://www.youtube.com/embed/b-ztMQpj8yc",
+  backup: "https://www.youtube.com/embed/nx1n-I-1iXw"
+});
+
+demo_urls.set("Close-Grip Bench Press", {
+  primary: "https://www.youtube.com/embed/vcBig73ojpE",
+  backup: "https://www.youtube.com/embed/7jMKu3GJ-2A"
+});
+
+demo_urls.set("Hanging Leg Raise", {
+  primary: "https://www.youtube.com/embed/VNp8-w1eNvY",
+  backup: "https://www.youtube.com/embed/Xr9_k7Hc-jc"
+});
+
+demo_urls.set("Plank", {
+  primary: "https://www.youtube.com/embed/pSHjTRCQxIw",
+  backup: "https://www.youtube.com/embed/TyNZCjXbnsw"
+});
+
+demo_urls.set("Russian Twists", {
+  primary: "https://www.youtube.com/embed/wkD8rjkodUI",
+  backup: "https://www.youtube.com/embed/NeAtimSCxs4"
+});

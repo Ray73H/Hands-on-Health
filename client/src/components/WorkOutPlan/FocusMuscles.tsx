@@ -10,8 +10,8 @@ const initialFocusMuscles: FocusMuscles[] = [
     { id: 2, name: "Legs", selected: false },
     { id: 3, name: "Back", selected: false },
     { id: 4, name: "Arms", selected: false },
-    { id: 5, name: "Cardio", selected: false },
-    { id: 6, name: "Abs", selected: false },
+    // { id: 5, name: "Shoulders", selected: false },
+    { id: 5, name: "Core", selected: false },
 ];
 
 const FocusMusclesView: React.FC = () => {
